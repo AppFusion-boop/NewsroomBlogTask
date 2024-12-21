@@ -236,6 +236,18 @@ UNFOLD = {
                     },
                 ]
             },
+            {
+                "title": "API Documentation",
+                "separator": True,
+                "items": [
+                    {
+                        "title": "Swagger UI",
+                        "icon": "api",
+                        "link": "/api/docs/",
+                        "permission": lambda request: request.user.is_superuser,
+                    },
+                ]
+            }
         ],
 
     },

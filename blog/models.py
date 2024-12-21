@@ -8,7 +8,7 @@ class Blog(models.Model):
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField(default=True)
-    tags = models.ManyToManyField('BlogTag', related_name='blogs')
+    tags = models.ManyToManyField('BlogTag', related_name='blogs', blank=True)
 
     def __str__(self):
         return self.title

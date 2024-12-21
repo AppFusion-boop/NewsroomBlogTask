@@ -28,6 +28,7 @@ urlpatterns = [
     path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('author/', include('author.urls')),
+    path('blog/', include('blog.urls')),
     path('schema/', SpectacularAPIView.as_view(), name='schema'),
     path('api/docs/', login_required(permission_classes([IsAdminUser])(SpectacularSwaggerView.as_view(url_name='schema'))), name='swagger-ui'),
 ]
