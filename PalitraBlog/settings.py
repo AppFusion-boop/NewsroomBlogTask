@@ -53,7 +53,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "whitenoise.runserver_nostatic",
     'blog.apps.BlogConfig',
-    "whitenoise.runserver_nostatic",
     "corsheaders",
     "rest_framework",
     "drf_spectacular",
