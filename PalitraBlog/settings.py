@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 from datetime import timedelta
 
+from django.urls import reverse_lazy
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -53,6 +55,8 @@ INSTALLED_APPS = [
     "corsheaders",
     "rest_framework",
     "drf_spectacular",
+    'dal',
+    'dal_select2',
     "author.apps.AuthorConfig"
 ]
 
@@ -168,6 +172,62 @@ SPECTACULAR_SETTINGS = {
     'TITLE': 'Newsroom Blog API',
     'DESCRIPTION': 'Newsroom Blog API documentation',
     'VERSION': '1.0.0',
+}
+
+UNFOLD = {
+    "SITE_TITLE": "Newsroom Blog",
+    "SITE_HEADER": "Newsroom Blog",
+    "SITE_FOOTER": "Newsroom Blog",
+    "SITE_DESCRIPTION": "Newsroom Blog",
+
+    "SIDEBAR": {
+        "show_search": False,  # Search in applications and models names
+        "show_all_applications": False,  # Dropdown with all applications and models
+        "navigation": [
+            {
+                "title": "Site",
+                "separator": True,
+                "items": [
+                    {
+                        "title": "Menu Items",
+                        "icon": "menu",
+                        "link": reverse_lazy("admin:blog_menuitem_changelist"),
+                        "permission": lambda request: request.user.is_superuser,
+                    },]
+            },
+            {
+                "title": "Blog",
+                "separator": True,
+                "items": [
+                    {
+                        "title": "Authors",
+                        "icon": "person",
+                        "link": reverse_lazy("admin:author_author_changelist"),
+                        "permission": lambda request: request.user.is_superuser,
+                    },
+                    {
+                        "title": "Blog Posts",
+                        "icon": "article",
+                        "link": reverse_lazy("admin:blog_blog_changelist"),
+                        "permission": lambda request: request.user.is_superuser,
+                    },
+                    {
+                        "title": "Categories",
+                        "icon": "category",
+                        "link": reverse_lazy("admin:blog_category_changelist"),
+                        "permission": lambda request: request.user.is_superuser,
+                    },
+                    {
+                        "title": "Tags",
+                        "icon": "tag",
+                        "link": reverse_lazy("admin:blog_blogtag_changelist"),
+                        "permission": lambda request: request.user.is_superuser,
+                    },
+                ]
+            },
+        ],
+
+    },
 }
 
 # # Redis

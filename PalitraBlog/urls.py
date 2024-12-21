@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.contrib.auth.decorators import login_required
-from django.urls import path
+from django.urls import path, include
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 from rest_framework.decorators import permission_classes
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
@@ -25,8 +25,9 @@ from utils.permissions import IsAdminUser
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('author/', include('author.urls')),
     path('schema/', SpectacularAPIView.as_view(), name='schema'),
     path('api/docs/', login_required(permission_classes([IsAdminUser])(SpectacularSwaggerView.as_view(url_name='schema'))), name='swagger-ui'),
 ]
