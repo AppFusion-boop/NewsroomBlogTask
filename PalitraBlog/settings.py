@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+import os
 from pathlib import Path
 from datetime import timedelta
 
@@ -29,6 +30,10 @@ SECRET_KEY = 'django-insecure-)87ffsg5f0g3)g0av^9000b7!bx9@u_%gx9(+0tmr^(=)vumgr
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://newsroomblogtask-production.up.railway.app',
+]
 
 
 AUTH_USER_MODEL = 'author.Author'
@@ -50,8 +55,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog.apps.BlogConfig',
     "whitenoise.runserver_nostatic",
+    'blog.apps.BlogConfig',
     "corsheaders",
     "rest_framework",
     "drf_spectacular",
@@ -159,7 +164,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = "static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+# if not DEBUG:
+#     STATICFILES_DIRS = [os.path.join(BASE_DIR, "staticfiles")]
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+# Media files for production
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -223,6 +236,18 @@ UNFOLD = {
                     },
                 ]
             },
+            {
+                "title": "API Documentation",
+                "separator": True,
+                "items": [
+                    {
+                        "title": "Swagger UI",
+                        "icon": "api",
+                        "link": "/api/docs/",
+                        "permission": lambda request: request.user.is_superuser,
+                    },
+                ]
+            }
         ],
 
     },
