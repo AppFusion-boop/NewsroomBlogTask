@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "whitenoise.runserver_nostatic",
     'blog.apps.BlogConfig',
     "whitenoise.runserver_nostatic",
     "corsheaders",
