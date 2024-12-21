@@ -31,6 +31,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://newsroomblogtask-production.up.railway.app',
+]
+
 
 AUTH_USER_MODEL = 'author.Author'
 
