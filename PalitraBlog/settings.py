@@ -55,8 +55,6 @@ INSTALLED_APPS = [
     "corsheaders",
     "rest_framework",
     "drf_spectacular",
-    'dal',
-    'dal_select2',
     "author.apps.AuthorConfig"
 ]
 

@@ -1,10 +1,8 @@
 from django.contrib import admin
 from django.db import models
-from django.forms import SelectMultiple
 from django.utils.safestring import mark_safe
 from unfold.admin import ModelAdmin, TabularInline
 from unfold.contrib.forms.widgets import WysiwygWidget, ArrayWidget
-from unfold.widgets import SelectMultiple
 from .models import Blog, Category, Comment, MenuItem, BlogTag
 
 
