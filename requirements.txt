@@ -1,0 +1,15 @@
+django
+django-unfold
+djangorestframework
+drf-spectacular
+gunicorn
+whitenoise
+psycopg2
+gevent
+greenlet
+django-cors-headers
+pyjwt
+djangorestframework-simplejwt
+redis
+django-redis
+Pillow
